@@ -36,7 +36,24 @@ export default function Page() {
               </p> <br />
             </div>
 
-            <SignIn />
+            <div className="clerk-theme">
+              <SignIn 
+                appearance={{
+                  elements: {
+                    formButtonPrimary: 'clerk-button-primary',
+                    footerActionLink: 'clerk-footer-action',
+                    headerTitle: 'clerk-header-title',
+                    headerSubtitle: 'clerk-header-subtitle',
+                    card: 'clerk-card',
+                    headerSubtitle: 'clerk-header-subtitle'
+                  },
+                  layout: {
+                    logoPlacement: 'inside',
+                    logoImageUrl: '/advisrr.svg',
+                  },
+                }}
+              />
+            </div>
           </div>
         </main>
       </div>
