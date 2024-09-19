@@ -15,10 +15,15 @@ function Header(){
                 <span className="text-primary font-bold text-xl">Advisrr</span>
             </div>
             {isSignedIn ? (
-                <UserButton/>
-            ) : (
                 <div className="flex gap-3 items-center">
                     <Link href={'/dashboard'}>
+                        <Button variant="outline" className='rounded-full'> Dashboard </Button>
+                    </Link>
+                    <UserButton/>
+                </div> 
+            ) : (
+                <div className="flex gap-3 items-center">
+                    <Link href={'/sign-in'}>
                         <Button variant="outline" className='rounded-full'> Dashboard </Button>
                     </Link>
                     <Link href={'/sign-in'}>
