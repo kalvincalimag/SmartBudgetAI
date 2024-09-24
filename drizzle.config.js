@@ -8,8 +8,8 @@ export default {
     dialect: 'postgresql',
     out: "./drizzle",
     dbCredentials: {
-      url: process.env.DATABASE_URL,
-      connectionString: process.env.DATABASE_URL,
+      url: process.env.NEXT_PUBLIC_DATABASE_URL,
+      connectionString: process.env.NEXT_PUBLIC_DATABASE_URL,
     }
   };
 
