@@ -67,7 +67,6 @@ export default function Dashboard (){
     .orderBy(desc(Expenses.id));
 
     setExpenseList(result)
-    console.log(result)
   }
 
   return (
