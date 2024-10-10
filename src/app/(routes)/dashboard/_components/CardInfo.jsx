@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import { useUser } from '@clerk/nextjs';
 import { PiggyBank, ReceiptText, Wallet, Sparkles, CircleDollarSign } from 'lucide-react';
 import formatNumber from '../../../../../utils';
 import getFinancialAdvice from '../../../../../utils/getFinancialAdvice';
 
 function CardInfo({budgetList, incomeList}) {
+  const {user} = useUser();
+  const isPremium = user?.publicMetadata?.subscriptionStatus === 'premium';
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalSpent, setTotalSpent] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
@@ -18,12 +21,32 @@ function CardInfo({budgetList, incomeList}) {
   useEffect(() => {
     if(totalBudget > 0 || totalIncome > 0 || totalSpent > 0){
       const fetchFinancialAdvice = async () => {
-        const advice = await getFinancialAdvice(totalBudget, totalIncome, totalSpent);
+        // Prepare income list data
+        const incomeListData = incomeList.map(income => ({
+          name: income.name,
+          amount: income.amount,
+          // totalAmount: income.totalAmount,
+        }));
+
+        // Prepare budget list data
+        const budgetListData = budgetList.map(budget => ({
+          name: budget.name,
+          amount: budget.amount,
+          totalSpent: budget.totalSpent
+        }));
+
+        const advice = await getFinancialAdvice(
+          totalBudget, 
+          totalIncome, 
+          totalSpent, 
+          incomeListData, 
+          budgetListData
+        );
         setFinancialAdvice(advice);
       };
       fetchFinancialAdvice();
     }
-  }, [totalBudget, totalIncome, totalSpent]);
+  }, [totalBudget, totalIncome, totalSpent, incomeList, budgetList]);
 
   const CalculateCardInfo = () => {
     let totalBudget_ = 0;
@@ -48,17 +71,19 @@ function CardInfo({budgetList, incomeList}) {
     <div>
         {budgetList.length > 0 ? (
           <div>
-            <div className='p-7 border mt-4 -mb-1 rounded-2xl flex items-center justify-between'>
+            {isPremium && (
+            <div className='p-8 border-2 border-indigo-500 mt-4 rounded-2xl flex items-center justify-between bg-white shadow-xl transform transition hover:scale-105 duration-300'>
               <div>
-                <div className='flex mb-2 flex-row space-x-1 items-center'>
-                  <h2 className='text-md'>Advisrr AI </h2>
-                  <Sparkles className='rounded-full text-white w-10 h-10 p-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 background-animate'/>
+                <div className='flex mb-2 flex-row space-x-2 items-center'>
+                  <h2 className='text-lg font-semibold text-indigo-700'>Advisrr AI</h2>
+                  <Sparkles className='rounded-full text-indigo-500 w-10 h-10 p-2 bg-gray-100'/>
                 </div>
-                <h2 className='font-light text-md'>
+                <h2 className='font-light text-gray-600 text-md'>
                   {financialAdvice || 'Loading Financial Advice...'}
                 </h2>
               </div>
-            </div>
+            </div> 
+            )}
             
             <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
               

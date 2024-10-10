@@ -1,4 +1,4 @@
-import {integer, numeric, pgTable, serial, varchar} from 'drizzle-orm/pg-core'
+import {integer, numeric, pgTable, serial, varchar, text} from 'drizzle-orm/pg-core'
 
 // Budget Schema
 export const Budgets = pgTable('budgets', {
@@ -28,3 +28,4 @@ export const Expenses = pgTable('expenses', {
   createdBy: varchar('createdBy', { length: 255 }).notNull(),
   createdAt: varchar('createdAt', { length: 255 }).notNull(),
 });
+
