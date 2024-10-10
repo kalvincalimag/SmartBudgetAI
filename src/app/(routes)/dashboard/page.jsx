@@ -8,10 +8,10 @@ import { Budgets, Expenses, Income } from '../../../../utils/schema';
 import BarChartDashboard from './_components/BarChartDashboard';
 import ExpenseListTable from './expenses/_components/ExpenseListTable';
 import BudgetItem from './budgets/_components/BudgetItem';
-import moment from 'moment';
 
 export default function Dashboard (){
-  const {user} = useUser();
+  const { user } = useUser();
+  const isPremium = user?.publicMetadata?.subscriptionStatus === "premium";
   const [budgetList, setBudgetList] = useState([]);
   const [incomeList, setIncomeList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
@@ -76,7 +76,7 @@ export default function Dashboard (){
       <CardInfo budgetList={budgetList} incomeList={incomeList}/>
       <div className='grid grid-cols-1 lg:grid-cols-3 mt-6 gap-5'>
         <div className='lg:col-span-2'>
-          <BarChartDashboard budgetList={budgetList}/>
+          {isPremium && <BarChartDashboard budgetList={budgetList}/>}
           <ExpenseListTable expensesList={expenseList} refreshData={() => getBudgetList()}/>
         </div>
         <div className='grid gap-5'>

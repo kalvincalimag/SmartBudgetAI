@@ -10,8 +10,11 @@ import {
   ShieldCheck,
   CircleDollarSign,
 } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 function SideNav() {
+  const { user } = useUser();
+  const isPremium = user?.publicMetadata?.subscriptionStatus === "premium";
   const menuList = [
     {
       id: 1,
@@ -37,13 +40,16 @@ function SideNav() {
       icon: Receipt,
       path: "/dashboard/expenses",
     },
-    // {
-    //   id: 5,
-    //   name: "Upgrade",
-    //   icon: ShieldCheck,
-    //   path: "/dashboard/upgrade",
-    // },
   ];
+
+  if (!isPremium) {
+    menuList.push({
+      id: 5,
+      name: "Upgrade",
+      icon: ShieldCheck,
+      path: "/dashboard/upgrade",
+    });
+  }
 
   const path = usePathname();
 
