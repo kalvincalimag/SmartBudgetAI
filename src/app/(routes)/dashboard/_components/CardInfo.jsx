@@ -3,6 +3,7 @@ import { useUser } from '@clerk/nextjs';
 import { PiggyBank, ReceiptText, Wallet, Sparkles, CircleDollarSign } from 'lucide-react';
 import formatNumber from '../../../../../utils';
 import getFinancialAdvice from '../../../../../utils/getFinancialAdvice';
+import Link from "next/link"; 
 
 function CardInfo({budgetList, incomeList}) {
   const {user} = useUser();
@@ -85,44 +86,52 @@ function CardInfo({budgetList, incomeList}) {
             </div> 
             )}
             
-            <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+            <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
               
               {/* TOTAL BUDGET */}
-              <div className='p-7 border rounded-2xl flex items-center justify-between'>
-                <div>
-                  <h2 className='text-sm'>Total Budget </h2>
-                  <h2 className='font-bold text-2xl'>₱{formatNumber(totalBudget)} </h2>
+              <Link href="/dashboard/budgets" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+                <div className='p-7 border rounded-2xl flex items-center justify-between'>
+                  <div>
+                    <h2 className='text-sm'>Total Budget </h2>
+                    <h2 className='font-bold text-2xl'>₱{formatNumber(totalBudget)} </h2>
+                  </div>
+                  <PiggyBank className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
                 </div>
-                <PiggyBank className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
-              </div>
+              </Link>
 
               {/* TOTAL SPENT */}
-              <div className='p-7 border rounded-2xl flex items-center justify-between'>
-                <div>
-                  <h2 className='text-sm'>Total Spent</h2>
-                  <h2 className='font-bold text-2xl'>₱{formatNumber(totalSpent)} </h2>
+              <Link href="/dashboard/expenses" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+                <div className='p-7 border rounded-2xl flex items-center justify-between'>
+                  <div>
+                    <h2 className='text-sm'>Total Spent</h2>
+                    <h2 className='font-bold text-2xl'>₱{formatNumber(totalSpent)} </h2>
+                  </div>
+                  <ReceiptText className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
                 </div>
-                <ReceiptText className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
-              </div>
+              </Link>
 
 
               {/* NO OF BUDGETS */}
-              <div className='p-7 border rounded-2xl flex items-center justify-between'>
-                <div>
-                  <h2 className='text-sm'>No. of Budgets</h2>
-                  <h2 className='font-bold text-2xl'>{budgetList?.length} </h2>
+              <Link href="/dashboard/budgets" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+                <div className='p-7 border rounded-2xl flex items-center justify-between'>
+                  <div>
+                    <h2 className='text-sm'>No. of Budgets</h2>
+                    <h2 className='font-bold text-2xl'>{budgetList?.length} </h2>
+                  </div>
+                  <Wallet className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
                 </div>
-                <Wallet className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
-              </div>
+              </Link>
 
               {/* SUM OF INCOME STREAMS */}
-              <div className='p-7 border rounded-2xl flex items-center justify-between'>
-                <div>
-                  <h2 className='text-sm'>Sum of Income Streams </h2>
-                  <h2 className='font-bold text-2xl'>₱{formatNumber(totalIncome)} </h2>
+              <Link href="/dashboard/incomes" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+                <div className='p-7 border rounded-2xl flex items-center justify-between'>
+                  <div>
+                    <h2 className='text-sm'>Sum of Income Streams </h2>
+                    <h2 className='font-bold text-2xl'>₱{formatNumber(totalIncome)} </h2>
+                  </div>
+                  <CircleDollarSign className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
                 </div>
-                <CircleDollarSign className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
-              </div>
+              </Link>
 
             </div>
           </div>
