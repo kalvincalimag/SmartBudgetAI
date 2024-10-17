@@ -416,11 +416,11 @@ export default function Hero() {
             className="div"
           >
             <h2 className="text-center text-xl md:text-4xl font-bold bg-gradient-to-r from-neutral-300 to-primary bg-clip-text text-transparent">
-              Advisrr Fintech
+              SmartBudget AI
             </h2>
 
             <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-              The best AI-powered solution for financial management and budget tracking on the web.
+              The best AI-powered solution for budgeting and expense tracking on the web.
             </p>
           </motion.div>
           <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />

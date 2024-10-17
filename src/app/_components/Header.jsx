@@ -12,7 +12,7 @@ function Header(){
         <div className="p-5 flex justify-between items-center border shadow-sm">
             <div className="flex items-center">
                 <Image src={'/advisrr.svg'} alt='advisrr-logo' width={40} height={25}/>
-                <span className="text-primary font-bold text-xl">Advisrr</span>
+                <span className="text-primary font-bold text-xl">SmartBudget AI</span>
             </div>
             {isSignedIn ? (
                 <div className="flex gap-3 items-center">

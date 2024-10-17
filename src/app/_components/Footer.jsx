@@ -13,9 +13,9 @@ export default function Footer() {
         <div className="grid gap-1">
           <Link href="#" className="flex items-center gap-2" prefetch={false}>
             <Image src='/advisrr.svg' alt='logo' width={28} height={28}/>
-            <span className="font-semibold">Advisrr</span>
+            <span className="font-semibold">SmartBudget AI</span>
           </Link>
-          <p className="text-gray-500 dark:text-gray-400">Building the future of FinMan.</p>
+          <p className="text-gray-500 dark:text-gray-400">Building the future of budgeting.</p>
           <div className="flex items-center gap-2">
             <Link
               href="#"
@@ -67,7 +67,7 @@ export default function Footer() {
             AI Advice
           </Link>
           <Link href="#" className="hover:underline" prefetch={false}>
-            Spending Analytics
+            Budget Visualization
           </Link>
         </div>
         <div className="grid gap-1">
