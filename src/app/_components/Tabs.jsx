@@ -6,25 +6,25 @@ import { Tabs } from "@/components/ui/tabs";
 export function TabsSection() {
   const tabs = [
     {
-      title: "Advice",
-      value: "advice",
+      title: "AI Advice",
+      value: "ai advice",
       content: (
         <div
           className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-neutral-300 to-primary">
-          <p>Personalized Financial Advice</p>
-          <p className="text-sm"><small>Receive user-specific tailor-made AI-powered financial advice.</small></p>
+          <p>Personalized Advice</p>
+          <p className="text-sm"><small>Receive user-specific tailor-made AI-powered budgeting advice.</small></p>
           <DummyContent src="https://res.cloudinary.com/dotera808/image/upload/v1726595676/Advisrr/Dashboard_-_Copy_pzibxk.png"/>
         </div>
       ),
     },
     {
-      title: "Analytics",
-      value: "analytics",
+      title: "Central Dashboard",
+      value: "central dashboard",
       content: (
         <div
           className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-neutral-300 to-primary">
-          <p>Tracking & Analytics</p>
-          <p className="text-sm"><small>Track your spending and identify patterns through intuitive visualizations.</small></p>
+          <p>Central Dashboard</p>
+          <p className="text-sm"><small>Track your expenses and budgets through intuitive visualizations.</small></p>
           <DummyContent src='https://res.cloudinary.com/dotera808/image/upload/v1726595676/Advisrr/DashboardBottom_i9oted.png' />
         </div>
       ),
@@ -48,7 +48,7 @@ export function TabsSection() {
         <div
           className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-neutral-300 to-primary">
           <p>Income/Expenses Logging</p>
-          <p className="text-sm"><small>Log your income sources and daily expenses seamlessly.</small></p>
+          <p className="text-sm"><small>Log your income sources and daily expenses without friction.</small></p>
           <DummyContent src='https://res.cloudinary.com/dotera808/image/upload/v1726595932/Advisrr/Logging_zhfacy.png'/>
         </div>
       ),

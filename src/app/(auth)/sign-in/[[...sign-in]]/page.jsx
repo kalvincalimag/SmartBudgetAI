@@ -28,11 +28,11 @@ export default function Page() {
               </a>
 
               <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-                Welcome to Advisrr 📈
+                Welcome to SmartBudget AI 📈
               </h1>
 
               <p className="mt-4 leading-relaxed text-gray-500">
-                The Ultimate AI-Powered Solution for Smarter Financial Management & Budget Tracking
+                The best AI-powered solution for budgeting and expense tracking on the web.
               </p> <br />
             </div>
 
