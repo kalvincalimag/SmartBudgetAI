@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useUser } from '@clerk/nextjs';
-import { PiggyBank, ReceiptText, Wallet, Sparkles, CircleDollarSign } from 'lucide-react';
+import { PiggyBank, ReceiptText, Wallet, Sparkles, CircleDollarSign, ArrowRight } from 'lucide-react';
 import formatNumber from '../../../../../utils';
 import getFinancialAdvice from '../../../../../utils/getFinancialAdvice';
 import Link from "next/link"; 
@@ -73,14 +73,14 @@ function CardInfo({budgetList, incomeList}) {
         {budgetList.length > 0 ? (
           <div>
             {isPremium && (
-            <div className='p-8 border-2 border-indigo-500 mt-4 rounded-2xl flex items-center justify-between bg-white shadow-xl transform transition hover:scale-105 duration-300'>
+            <div className='p-8 border-2 border-indigo-500 mt-4 rounded-2xl flex items-center justify-between bg-white shadow-xl transform transition hover:scale-105 hover:shadow-md duration-300'>
               <div>
                 <div className='flex mb-2 flex-row space-x-2 items-center'>
-                  <h2 className='text-lg font-semibold text-indigo-700'>Advisrr AI</h2>
+                  <h2 className='text-lg font-semibold text-indigo-700'>SmartBudget AI </h2>
                   <Sparkles className='rounded-full text-indigo-500 w-10 h-10 p-2 bg-gray-100'/>
                 </div>
                 <h2 className='font-light text-gray-600 text-md'>
-                  {financialAdvice || 'Loading Financial Advice...'}
+                  {financialAdvice || 'Loading AI Advice...'}
                 </h2>
               </div>
             </div> 
@@ -89,47 +89,59 @@ function CardInfo({budgetList, incomeList}) {
             <div className='mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
               
               {/* TOTAL BUDGET */}
-              <Link href="/dashboard/budgets" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+              <Link href="/dashboard/budgets" className="hover:shadow-md rounded-2xl ease-in-out duration-300 group" prefetch={false}>
                 <div className='p-7 border rounded-2xl flex items-center justify-between'>
                   <div>
                     <h2 className='text-sm'>Total Budget </h2>
                     <h2 className='font-bold text-2xl'>₱{formatNumber(totalBudget)} </h2>
                   </div>
-                  <PiggyBank className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
+                  <div className='relative w-12 h-12'>
+                    <PiggyBank className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 group-hover:opacity-30' />
+                    <ArrowRight className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 opacity-0 group-hover:opacity-70' />
+                  </div>
                 </div>
               </Link>
 
               {/* TOTAL SPENT */}
-              <Link href="/dashboard/expenses" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+              <Link href="/dashboard/expenses" className="hover:shadow-md rounded-2xl ease-in-out duration-300 group" prefetch={false}>
                 <div className='p-7 border rounded-2xl flex items-center justify-between'>
                   <div>
                     <h2 className='text-sm'>Total Spent</h2>
                     <h2 className='font-bold text-2xl'>₱{formatNumber(totalSpent)} </h2>
                   </div>
-                  <ReceiptText className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
+                  <div className='relative w-12 h-12'>
+                    <ReceiptText className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 group-hover:opacity-30'/>
+                    <ArrowRight className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 opacity-0 group-hover:opacity-70'/>
+                  </div>                  
                 </div>
               </Link>
 
 
               {/* NO OF BUDGETS */}
-              <Link href="/dashboard/budgets" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+              <Link href="/dashboard/budgets" className="hover:shadow-md rounded-2xl ease-in-out duration-300 group" prefetch={false}>
                 <div className='p-7 border rounded-2xl flex items-center justify-between'>
                   <div>
                     <h2 className='text-sm'>No. of Budgets</h2>
                     <h2 className='font-bold text-2xl'>{budgetList?.length} </h2>
                   </div>
-                  <Wallet className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
+                  <div className='relative w-12 h-12'>
+                    <Wallet className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 group-hover:opacity-30'/>
+                    <ArrowRight className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 opacity-0 group-hover:opacity-70'/>
+                  </div>                  
                 </div>
               </Link>
 
               {/* SUM OF INCOME STREAMS */}
-              <Link href="/dashboard/incomes" className="hover:shadow-xl rounded-2xl ease-in-out duration-300" prefetch={false}>
+              <Link href="/dashboard/incomes" className="hover:shadow-md rounded-2xl ease-in-out duration-300 group" prefetch={false}>
                 <div className='p-7 border rounded-2xl flex items-center justify-between'>
                   <div>
                     <h2 className='text-sm'>Sum of Income Streams </h2>
                     <h2 className='font-bold text-2xl'>₱{formatNumber(totalIncome)} </h2>
                   </div>
-                  <CircleDollarSign className='bg-primary p-3 h-12 w-12 rounded-full text-white'/>
+                  <div className='relative w-12 h-12'>
+                    <CircleDollarSign className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 group-hover:opacity-30'/>
+                    <ArrowRight className='absolute inset-0 bg-primary p-3 h-12 w-12 rounded-full text-white transition-opacity duration-300 opacity-0 group-hover:opacity-70'/>
+                  </div>                  
                 </div>
               </Link>
 
