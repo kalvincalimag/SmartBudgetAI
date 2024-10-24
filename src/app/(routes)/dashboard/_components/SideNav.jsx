@@ -61,7 +61,7 @@ function SideNav() {
     <div className="h-screen p-5 border shadow-sm">
       <Link href={'/'} className="flex flex-row items-center">
         <Image src="/advisrr.svg" alt="logo" width={40} height={25} />
-        <span className="text-primary font-bold text-xl">Advisrr</span>
+        <span className="text-primary font-bold text-xl">SmartBudget AI</span>
       </Link>
       <div className="mt-5">
         {menuList.map((menu, index) => (
