@@ -8,6 +8,8 @@ import { Budgets, Expenses, Income } from '../../../../utils/schema';
 import BarChartDashboard from './_components/BarChartDashboard';
 import ExpenseListTable from './expenses/_components/ExpenseListTable';
 import BudgetItem from './budgets/_components/BudgetItem';
+import CreateBudget from './budgets/_components/CreateBudget';
+import AddExpensesDashboard from './expenses/_components/AddExpensesDashboard';
 
 export default function Dashboard (){
   const { user } = useUser();
@@ -15,6 +17,7 @@ export default function Dashboard (){
   const [budgetList, setBudgetList] = useState([]);
   const [incomeList, setIncomeList] = useState([]);
   const [expenseList, setExpenseList] = useState([]);
+  const [showAddExpense, setShowAddExpense] = useState(false); 
 
   useEffect(() => {
     user && getBudgetList();
@@ -53,34 +56,53 @@ export default function Dashboard (){
     }
   }
 
-  const getAllExpenses = async() => {
-    const result = await db.select({
-      id: Expenses.id,
-      name: Expenses.name,
-      amount: Expenses.amount,
-      createdBy: Expenses.createdBy,
-      createdAt: Expenses.createdAt,
-    })
-    .from(Budgets)
-    .rightJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
-    .where(eq(Budgets.createdBy, user?.primaryEmailAddress.emailAddress))
-    .orderBy(desc(Expenses.id));
+  const getAllExpenses = async () => {
+    const result = await db
+      .select({
+        id: Expenses.id,
+        name: Expenses.name,
+        amount: Expenses.amount,
+        createdAt: Expenses.createdAt,
+        budgetName: Budgets.name,
+      })
+      .from(Expenses)
+      .leftJoin(Budgets, eq(Expenses.budgetId, Budgets.id))
+      .where(eq(Expenses.createdBy, user?.primaryEmailAddress.emailAddress))
+      .orderBy(desc(Expenses.id));
 
-    setExpenseList(result)
-  }
+    setExpenseList(result);
+  };
 
   return (
     <div className='p-8'>
       <h2 className='font-bold text-4xl'>Hi, {user?.fullName} 👋</h2>
       <p className='text-gray-500'>Here's what's happening with your money. Let's manage your budgets.</p>
-      <CardInfo budgetList={budgetList} incomeList={incomeList}/>
+      <CardInfo budgetList={budgetList} incomeList={incomeList} />
       <div className='grid grid-cols-1 lg:grid-cols-3 mt-6 gap-5'>
         <div className='lg:col-span-2'>
           {isPremium && <BarChartDashboard budgetList={budgetList}/>}
-          <ExpenseListTable expensesList={expenseList} refreshData={() => getBudgetList()}/>
+          <ExpenseListTable 
+            expensesList={expenseList} 
+            refreshData={() => getBudgetList()} 
+            showAddExpensePrompt={!showAddExpense} 
+            onAddExpenseClick={() => setShowAddExpense(true)} 
+          />
+          {showAddExpense && (
+            <div className="mt-6">
+              <h2 className='font-bold text-lg'>Add New Expense</h2>
+              <AddExpensesDashboard
+                budgetId={null} 
+                user={user} 
+                refreshData={() => getBudgetList()} 
+                budgetList={budgetList}
+                onHide={() => setShowAddExpense(false)} 
+              />
+            </div>
+          )}
         </div>
         <div className='grid gap-5'>
           <h2 className='font-bold text-lg'>Latest Budgets</h2>
+          <CreateBudget refreshData={() => getBudgetList()}/>
           {budgetList?.length > 0 
             ? budgetList.map((budget, index) => (
               <BudgetItem budget={budget} key={index}/>
