@@ -43,7 +43,7 @@ function Upgrade() {
     <div className="">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="grid grid-cols-1 pt-8 gap-4 sm:grid-cols-2 sm:items-center md:gap-8">
-          <div className="rounded-2xl border border-indigo-600 p-6 shadow-sm ring-1 ring-indigo-600 sm:order-last sm:px-8 lg:p-12">
+          <div className="rounded-2xl border border-indigo-600 p-6 shadow-md hover:shadow-lg ring-1 ring-indigo-600 sm:order-last sm:px-8 lg:p-12">
             <div className="text-center">
               <h2 className="text-lg font-medium text-gray-900">
                 Premium Plan
@@ -154,16 +154,18 @@ function Upgrade() {
                 <span className="text-gray-700"> Phone support </span>
               </li>
             </ul>
-
-            <button
-              onClick={handleUpgrade}
-              className="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
-            >
-              Upgrade Now
-            </button>
+            <div className="flex items-center justify-center">
+              <button
+                onClick={handleUpgrade}
+                className="mt-8 block rounded-full border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-indigo-700 hover:ring-1 hover:ring-indigo-700 focus:outline-none focus:ring active:text-indigo-500"
+              >
+                Upgrade Now
+              </button>
+            </div>
+            
           </div>
 
-          <div className="rounded-2xl border border-gray-200 p-6 shadow-sm sm:px-8 lg:p-12">
+          <div className="rounded-2xl border border-gray-200 p-6 shadow-md hover:shadow-lg sm:px-8 lg:p-12">
             <div className="text-center">
               <h2 className="text-lg font-medium text-gray-900">
                 Basic Plan 
